@@ -1,0 +1,61 @@
+
+.contenedor-pedidos {
+  padding: 25px;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  color: #252525;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: white;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background: #252525;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background: #f5f5f5;
+}
+
+button {
+  padding: 9px 14px;
+  border: none;
+  border-radius: 5px;
+  background: #d62828;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #a91d1d;
+}
+
+.detalle {
+  margin-top: 30px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.actualizar {
+  margin-top: 20px;
+  background: #333;
+}
+
+.mensaje-error {
+  color: #d62828;
+  margin: 15px 0;
+}

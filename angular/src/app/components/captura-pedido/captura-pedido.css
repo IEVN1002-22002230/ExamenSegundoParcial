@@ -1,0 +1,189 @@
+
+.pantalla-pizzeria {
+  width: 96%;
+  max-width: 1500px;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+  color: #111;
+}
+
+/* REGISTRO ROJO */
+.captura-container {
+  background: #a5bfd8;
+  border: 4px solid #e32636;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.captura-container h2 {
+  margin-top: 0;
+  margin-bottom: 22px;
+}
+
+.datos-cliente {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.datos-cliente label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.datos-cliente input {
+  width: 100%;
+  padding: 9px;
+  box-sizing: border-box;
+}
+
+.seleccion-pizza {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.opcion {
+  background: #a5bfd8;
+  border: 1px solid #ddd;
+  padding: 14px;
+}
+
+.opcion h3 {
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+
+.opcion label {
+  display: block;
+  margin: 10px 0;
+}
+
+.cantidad input {
+  width: 100%;
+  padding: 9px;
+  box-sizing: border-box;
+}
+
+/* BOTONES */
+button {
+  padding: 9px 18px;
+  cursor: pointer;
+}
+
+.captura-container button {
+  margin-top: 12px;
+}
+
+/* PANELES INFERIORES */
+.paneles-inferiores {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 12px;
+  margin-top: 12px;
+  align-items: stretch;
+}
+
+/* DETALLE NEGRO */
+.detalle-panel {
+  background: #a5bfd8;
+  border: 4px solid #111;
+  padding: 15px;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.detalle-panel h2 {
+  margin-top: 0;
+}
+
+.tabla-detalle {
+  width: 100%;
+  overflow-x: auto;
+  background: white;
+  min-height: 150px;
+}
+
+.detalle-panel table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  font-size: 13px;
+}
+
+.detalle-panel th,
+.detalle-panel td {
+  border: 1px solid #ccc;
+  padding: 9px 7px;
+  text-align: left;
+}
+
+.detalle-panel th {
+  background: #252525;
+  color: white;
+}
+
+.vacio {
+  text-align: center !important;
+  color: #666;
+  padding: 25px !important;
+}
+
+.total-pedido {
+  margin-top: 18px;
+}
+
+.btn-quitar {
+  background: #d62828;
+  color: white;
+  border: none;
+}
+
+.btn-terminar {
+  background: #ddd;
+  border: 1px solid #999;
+}
+
+.btn-terminar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* VENTAS AMARILLO */
+.ventas-panel {
+  background: #a5bfd8;
+  border: 4px solid #e6d500;
+  padding: 10px;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.error {
+  color: #b00020;
+  font-weight: bold;
+}
+
+.exito {
+  color: #176b31;
+  font-weight: bold;
+}
+
+/* RESPONSIVE */
+@media (max-width: 850px) {
+  .datos-cliente {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .paneles-inferiores {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 550px) {
+  .datos-cliente,
+  .seleccion-pizza {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,137 @@
+
+<div class="ventas-container">
+
+  <h2>Ventas del día</h2>
+
+  <div class="filtros">
+    <label for="dia">Seleccionar día:</label>
+
+    <select
+      id="dia"
+      [(ngModel)]="diaSeleccionado"
+      (ngModelChange)="limpiarVentasDia()">
+
+      <option value="" disabled>Selecciona</option>
+      <option value="lunes">Lunes</option>
+      <option value="martes">Martes</option>
+      <option value="miercoles">Miércoles</option>
+      <option value="jueves">Jueves</option>
+      <option value="viernes">Viernes</option>
+      <option value="sabado">Sábado</option>
+      <option value="domingo">Domingo</option>
+
+    </select>
+
+    <button
+      (click)="consultarVentasDia()"
+      [disabled]="!diaSeleccionado || cargandoDia">
+
+      {{ cargandoDia ? 'Consultando...' : 'Consultar' }}
+
+    </button>
+  </div>
+
+  <p class="error" *ngIf="mensajeDia">
+    {{ mensajeDia }}
+  </p>
+
+  <div class="tabla-ventas" *ngIf="consultadoDia && ventasDia.length > 0">
+
+    <table>
+      <thead>
+        <tr>
+          <th>Cliente</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let venta of ventasDia">
+          <td>{{ venta.nombre_cliente }}</td>
+          <td>{{ venta.total | currency:'MXN' }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+  <p *ngIf="consultadoDia && !cargandoDia && ventasDia.length === 0 && !mensajeDia">
+    No hay ventas para este día.
+  </p>
+
+  <h3 class="total" *ngIf="consultadoDia">
+    Ventas totales del día:
+    {{ totalDia | currency:'MXN' }}
+  </h3>
+
+  <hr>
+
+  <h2>Ventas por mes</h2>
+
+  <div class="filtros">
+    <label for="mes">Seleccionar mes:</label>
+
+    <select
+      id="mes"
+      [(ngModel)]="mesSeleccionado"
+      (ngModelChange)="limpiarVentasMes()">
+
+      <option value="" disabled>Selecciona</option>
+      <option value="enero">Enero</option>
+      <option value="febrero">Febrero</option>
+      <option value="marzo">Marzo</option>
+      <option value="abril">Abril</option>
+      <option value="mayo">Mayo</option>
+      <option value="junio">Junio</option>
+      <option value="julio">Julio</option>
+      <option value="agosto">Agosto</option>
+      <option value="septiembre">Septiembre</option>
+      <option value="octubre">Octubre</option>
+      <option value="noviembre">Noviembre</option>
+      <option value="diciembre">Diciembre</option>
+
+    </select>
+
+    <button
+      (click)="consultarVentasMes()"
+      [disabled]="!mesSeleccionado || cargandoMes">
+
+      {{ cargandoMes ? 'Consultando...' : 'Consultar' }}
+
+    </button>
+  </div>
+
+  <p class="error" *ngIf="mensajeMes">
+    {{ mensajeMes }}
+  </p>
+
+  <div class="tabla-ventas" *ngIf="consultadoMes && ventasMes.length > 0">
+
+    <table>
+      <thead>
+        <tr>
+          <th>Cliente</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let venta of ventasMes">
+          <td>{{ venta.nombre_cliente }}</td>
+          <td>{{ venta.total | currency:'MXN' }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+  <p *ngIf="consultadoMes && !cargandoMes && ventasMes.length === 0 && !mensajeMes">
+    No hay ventas para este mes.
+  </p>
+
+  <h3 class="total" *ngIf="consultadoMes">
+    Ventas totales del mes:
+    {{ totalMes | currency:'MXN' }}
+  </h3>
+
+</div>

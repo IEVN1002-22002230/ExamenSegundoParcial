@@ -1,0 +1,100 @@
+
+<div class="contenedor-pedidos">
+
+  <h1>Pedidos de la Pizzería</h1>
+  <p>Pedidos registrados en la base de datos</p>
+
+  <div *ngIf="cargando">
+    Cargando pedidos...
+  </div>
+
+  <div class="mensaje-error" *ngIf="error">
+    {{ error }}
+  </div>
+
+  <table *ngIf="pedidos.length > 0">
+
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Cliente</th>
+        <th>Dirección</th>
+        <th>Teléfono</th>
+        <th>Fecha</th>
+        <th>Total</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let pedido of pedidos">
+        <td>{{ pedido.id_pedido }}</td>
+        <td>{{ pedido.nombre_cliente }}</td>
+        <td>{{ pedido.direccion }}</td>
+        <td>{{ pedido.telefono }}</td>
+        <td>{{ pedido.fecha_pedido | date:'dd/MM/yyyy':'UTC' }}</td>
+        <td>{{ pedido.total | currency:'MXN' }}</td>
+
+        <td>
+          <button (click)="consultarDetalle(pedido.id_pedido)">
+            Ver detalle
+          </button>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+
+  <p *ngIf="!cargando && pedidos.length === 0 && !error">
+    No hay pedidos registrados.
+  </p>
+
+  <div class="detalle" *ngIf="pedidoSeleccionado">
+
+    <h2>Detalle del pedido #{{ pedidoSeleccionado.id_pedido }}</h2>
+
+    <p>
+      <strong>Cliente:</strong>
+      {{ pedidoSeleccionado.nombre_cliente }}
+    </p>
+
+    <p>
+      <strong>Dirección:</strong>
+      {{ pedidoSeleccionado.direccion }}
+    </p>
+
+    <h3>Productos</h3>
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>Tamaño</th>
+          <th>Ingredientes</th>
+          <th>Cantidad</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let detalle of detalles">
+          <td>{{ detalle.tamano }}</td>
+          <td>{{ detalle.ingredientes }}</td>
+          <td>{{ detalle.num_pizzas }}</td>
+          <td>{{ detalle.subtotal | currency:'MXN' }}</td>
+        </tr>
+      </tbody>
+
+    </table>
+
+    <button (click)="cerrarDetalle()">
+      Cerrar detalle
+    </button>
+
+  </div>
+
+  <button class="actualizar" (click)="cargarPedidos()">
+    Actualizar pedidos
+  </button>
+
+</div>

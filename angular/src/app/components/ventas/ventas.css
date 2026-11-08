@@ -1,0 +1,92 @@
+
+.ventas-container {
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  color: #222;
+  background: #a5bfd8;
+}
+
+.ventas-container h2 {
+  font-size: 18px;
+  margin: 5px 0 12px;
+  color: #222;
+}
+
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.filtros label {
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.filtros select {
+  min-width: 110px;
+  padding: 7px;
+  border: 1px solid #aaa;
+}
+
+.filtros button {
+  padding: 8px 12px;
+  cursor: pointer;
+  background: #ddd;
+  border: 1px solid #999;
+}
+
+.filtros button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.tabla-ventas {
+  max-height: 170px;
+  overflow: auto;
+  background: #fff;
+}
+
+.ventas-container table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.ventas-container th {
+  background: #252525;
+  color: white;
+  text-align: left;
+}
+
+.ventas-container th,
+.ventas-container td {
+  padding: 7px;
+  border: 1px solid #ccc;
+}
+
+.ventas-container tbody tr:nth-child(even) {
+  background: #eee;
+}
+
+.total {
+  font-size: 15px;
+  text-align: center;
+  background: #ddd;
+  padding: 10px;
+  margin: 12px 0;
+}
+
+.ventas-container hr {
+  border: 0;
+  border-top: 1px solid #888;
+  margin: 15px 0;
+}
+
+.error {
+  color: #b00020;
+  font-weight: bold;
+  font-size: 12px;
+}

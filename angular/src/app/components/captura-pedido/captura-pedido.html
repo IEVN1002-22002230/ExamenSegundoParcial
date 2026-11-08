@@ -1,0 +1,168 @@
+
+<div class="pantalla-pizzeria">
+
+  <!-- BLOQUE ROJO: REGISTRO -->
+  <section class="captura-container">
+
+    <h2>Registro de pedidos</h2>
+
+    <form [formGroup]="form">
+
+      <div class="datos-cliente">
+
+        <div>
+          <label>Nombre del cliente</label>
+          <input type="text" formControlName="nombre_cliente">
+        </div>
+
+        <div>
+          <label>Dirección</label>
+          <input type="text" formControlName="direccion">
+        </div>
+
+        <div>
+          <label>Teléfono</label>
+          <input type="text" formControlName="telefono">
+        </div>
+
+        <div>
+          <label>Fecha de compra</label>
+          <input type="date" formControlName="fecha_pedido">
+        </div>
+
+      </div>
+
+      <div class="seleccion-pizza">
+
+        <div class="opcion">
+          <h3>Tamaño de pizza</h3>
+
+          <label *ngFor="let tamano of tamanoOpciones">
+            <input
+              type="radio"
+              formControlName="tamano"
+              [value]="tamano.nombre">
+            {{ tamano.nombre }} ${{ tamano.precio }}
+          </label>
+        </div>
+
+        <div class="opcion">
+          <h3>Ingredientes</h3>
+
+          <div formArrayName="ingredientes">
+
+            <label *ngFor="let ingrediente of ingredientesOpciones; let i = index">
+              <input
+                type="checkbox"
+                [formControlName]="i">
+              {{ ingrediente.nombre }} ${{ ingrediente.precio }}
+            </label>
+
+          </div>
+        </div>
+
+        <div class="opcion cantidad">
+          <h3>Número de pizzas</h3>
+
+          <input
+            type="number"
+            formControlName="num_pizzas"
+            min="1">
+
+          <button
+            type="button"
+            (click)="agregarPizza()">
+            Agregar
+          </button>
+        </div>
+
+      </div>
+
+    </form>
+
+    <p class="error" *ngIf="error">{{ error }}</p>
+
+    <p class="exito" *ngIf="mensaje">{{ mensaje }}</p>
+
+  </section>
+
+
+  <!-- BLOQUES INFERIORES -->
+  <div class="paneles-inferiores">
+
+    <!-- BLOQUE NEGRO: DETALLE -->
+    <section class="detalle-panel">
+
+      <h2>Detalle del pedido</h2>
+
+      <div class="tabla-detalle">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th>Tamaño</th>
+              <th>Ingredientes</th>
+              <th>Núm. pizzas</th>
+              <th>Subtotal</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <tr *ngFor="let pizza of detalles; let i = index">
+              <td>{{ pizza.tamano }}</td>
+              <td>{{ pizza.ingredientes }}</td>
+              <td>{{ pizza.num_pizzas }}</td>
+              <td>{{ pizza.subtotal | currency:'MXN' }}</td>
+
+              <td>
+                <button
+                  type="button"
+                  class="btn-quitar"
+                  (click)="quitarPizza(i)">
+                  Quitar
+                </button>
+              </td>
+            </tr>
+
+            <tr *ngIf="detalles.length === 0">
+              <td colspan="5" class="vacio">
+                Agrega pizzas para mostrar el detalle del pedido.
+              </td>
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+      <h3 class="total-pedido">
+        Total: {{ totalPedido | currency:'MXN' }}
+      </h3>
+
+      <button
+        type="button"
+        class="btn-terminar"
+        (click)="terminarPedido()"
+        [disabled]="guardando || detalles.length === 0">
+
+        {{ guardando ? 'Guardando...' : 'Terminar pedido' }}
+
+      </button>
+
+    </section>
+
+
+    <!-- BLOQUE AMARILLO: VENTAS -->
+    <section class="ventas-panel">
+
+      <app-ventas></app-ventas>
+
+    </section>
+
+  </div>
+
+</div>
